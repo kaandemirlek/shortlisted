@@ -1,12 +1,22 @@
+import { useGame } from './game/store'
+import MainMenu from './screens/MainMenu'
+import TurnScreen from './screens/TurnScreen'
+import OutcomeScreen from './screens/OutcomeScreen'
+import FinalReport from './screens/FinalReport'
+
 function App() {
-  return (
-    <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center gap-4">
-      <h1 className="text-4xl font-bold text-slate-100">Mülakat Odası</h1>
-      <p className="text-slate-400 italic">
-        "İnsan kaynakları, insandan ve kaynaktan tasarruf sanatıdır."
-      </p>
-    </div>
-  )
+  const screen = useGame((s) => s.screen)
+
+  switch (screen) {
+    case 'menu':
+      return <MainMenu />
+    case 'turn':
+      return <TurnScreen />
+    case 'outcome':
+      return <OutcomeScreen />
+    case 'final':
+      return <FinalReport />
+  }
 }
 
 export default App
